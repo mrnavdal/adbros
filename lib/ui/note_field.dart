@@ -13,6 +13,7 @@ class NoteField extends StatefulWidget {
 
 class _NoteFieldState extends State<NoteField> {
   late TextEditingController _controller;
+  String? _lastKnownValue;
 
   @override
   void initState() {
@@ -45,7 +46,10 @@ class _NoteFieldState extends State<NoteField> {
           widget.noteId,
         );
 
-        _controller.text = noteValue;
+        if (!isEditing && _lastKnownValue != noteValue) {
+          _lastKnownValue = noteValue;
+          _controller.text = noteValue;
+        }
 
         return Card(
           margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
