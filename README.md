@@ -1,16 +1,49 @@
-# adbros
+# Notes App
 
-A new Flutter project.
+A simple Flutter notes application with local persistence.
+
+## Features
+
+- Create, edit, and delete notes
+- Local storage using Hive database
+- State management with Provider
+- Single note editing mode (only one note can be edited at a time)
+- Clean architecture with separated concerns
+
+## Project Structure
+
+```
+lib/
+├── main.dart              # App initialization and setup
+├── state/
+│   └── notes_provider.dart # State management with Provider
+└── ui/
+    ├── notes_page.dart     # Main notes list page
+    └── note_field.dart     # Individual note widget
+```
+
+## Tech Stack
+
+- **Flutter** - UI framework
+- **Hive** - Local NoSQL database
+- **Provider** - State management
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+1. Install dependencies:
+```bash
+flutter pub get
+```
 
-A few resources to get you started if this is your first Flutter project:
+2. Run the app:
+```bash
+flutter run
+```
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+## How It Works
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Notes are stored as key-value pairs in Hive:
+- Key: Unique timestamp ID
+- Value: Note text content
+
+The app uses a single `Map<String, String>` in the provider to manage notes in memory, synced with the Hive database.
